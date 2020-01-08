@@ -12,13 +12,13 @@ import java.time.LocalDate;
 @Setter
 public class Menu extends BaseEntity {
 
-    @Column
+    @Column(name = "fish")
     private String dish;
 
-    @Column
-    private int price;
+    @Column(name = "price")
+    private long price;
 
-    @Column
+    @Column(name = "menu_date")
     private LocalDate date;
 
     @ManyToOne(optional = false)

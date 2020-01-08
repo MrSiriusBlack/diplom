@@ -1,13 +1,12 @@
 package su.itline.diploma.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 @MappedSuperclass
@@ -18,11 +17,4 @@ public abstract class BaseEntity {
     @SequenceGenerator(name = "int_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "int_seq")
     public int id;
-
-    protected BaseEntity() {
-    }
-
-    protected BaseEntity(int id) {
-        this.id = id;
-    }
 }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class Vote extends BaseEntity {
 
-    @Column
+    @Column(name = "vote_date")
     private LocalDate date;
 
     @ManyToOne(optional = false)

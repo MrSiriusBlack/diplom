@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import su.itline.diploma.model.Restaurant;
 import su.itline.diploma.repository.RestaurantRepository;
+import su.itline.diploma.to.RestaurantTo;
 
 import java.util.List;
 
@@ -12,12 +13,11 @@ public class RestaurantService {
 
     private RestaurantRepository repository;
 
-    @Autowired
     public RestaurantService(RestaurantRepository repository) {
         this.repository = repository;
     }
 
-    public List<Restaurant> getAll() {
-        return repository.findAll();
+    public void setRestaurant(RestaurantTo restaurantTo) {
+
     }
 }

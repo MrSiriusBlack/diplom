@@ -1,32 +1,57 @@
 package su.itline.diploma.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import su.itline.diploma.errors.NotFoundError;
 import su.itline.diploma.model.Restaurant;
+import su.itline.diploma.repository.RestaurantRepository;
 import su.itline.diploma.service.RestaurantService;
+import su.itline.diploma.to.RestaurantTo;
 
 import java.util.List;
+import java.util.Optional;
 
+@Api(tags = "Управление ресторанами")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
     private final RestaurantService service;
+    private final RestaurantRepository repository;
 
-    public RestaurantController(RestaurantService service) {
+    public RestaurantController(RestaurantService service, RestaurantRepository repository) {
         this.service = service;
+        this.repository = repository;
     }
 
-    @GetMapping(name = "/restaurants")
+    @ApiOperation(value = "Получение всех ресторанов")
+    @GetMapping()
     public List<Restaurant> getRestaurant() {
-        List<Restaurant> list = service.getAll();
+        List<Restaurant> list = repository.findAll();
         return list;
     }
 
-    @PostMapping(name = "/menu/{restaurantId}")
-    public void setMenu() {
+    @ApiOperation(value = "Добавление или редактирование ресторана")
+    @PutMapping()
+    public void setRestaurant(@RequestBody RestaurantTo request) {
+        Restaurant restaurant = new Restaurant(request.getId(), request.getName());
+        repository.save(restaurant);
+    }
 
+    @ApiOperation(value = "Удление ресторана")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteRestaurant(@ApiParam(value = "ID ресторана", required = true, example = "1")
+                                 @PathVariable Integer id) {
+        checkRestaurant(id);
+        repository.deleteById(id);
+    }
+
+    private void checkRestaurant(int id) {
+        Optional<Restaurant> restaurantOptional = repository.findById(id);
+        restaurantOptional.orElseThrow(() -> new NotFoundError(Restaurant.class, id));
     }
 }

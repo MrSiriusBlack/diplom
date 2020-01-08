@@ -29,21 +29,21 @@ CREATE TABLE IF NOT EXISTS menus
     id              BIGINT NOT NULL PRIMARY KEY,
     dish            VARCHAR(255),
     price           INTEGER NOT NULL,
-    date            DATE NOT NULL,
+    menu_date            DATE NOT NULL,
     restaurant_id   INTEGER NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX IF NOT EXISTS menus_unique_date_idx
-    ON MENUS (date);
+    ON MENUS (MENU_DATE);
 
 CREATE TABLE IF NOT EXISTS votes
 (
     id              BIGINT NOT NULL PRIMARY KEY,
-    date            DATE NOT NULL,
+    vote_date            DATE NOT NULL,
     user_id         INTEGER NOT NULL,
     restaurant_id   INTEGER NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX IF NOT EXISTS votes_unique_date_idx
-    ON VOTES (date);
+    ON VOTES (VOTE_DATE);
