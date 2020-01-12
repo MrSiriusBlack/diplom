@@ -1,5 +1,5 @@
 package su.itline.diploma;
-/*
+
 import su.itline.diploma.model.User;
 import su.itline.diploma.to.UserTo;
 
@@ -30,4 +30,3 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return userTo.toString();
     }
 }
- */

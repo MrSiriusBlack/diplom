@@ -9,7 +9,6 @@ public class VoteService {
 
     private VoteRepository repository;
 
-    @Autowired
     public VoteService(VoteRepository repository) {
         this.repository = repository;
     }

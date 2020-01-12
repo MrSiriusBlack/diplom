@@ -1,4 +1,4 @@
-/*
+
 package su.itline.diploma.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +10,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/restaurants").permitAll()
-                .anyRequest().permitAll();
+                .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin();
     }
 }
-
- */

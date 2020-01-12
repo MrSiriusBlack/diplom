@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import su.itline.diploma.errors.NotFoundError;
 import su.itline.diploma.model.Restaurant;
@@ -35,6 +36,7 @@ public class RestaurantController {
     }
 
     @ApiOperation(value = "Добавление или редактирование ресторана")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping()
     public void setRestaurant(@RequestBody RestaurantTo request) {
         Restaurant restaurant = new Restaurant(request.getId(), request.getName());
@@ -42,6 +44,7 @@ public class RestaurantController {
     }
 
     @ApiOperation(value = "Удление ресторана")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteRestaurant(@ApiParam(value = "ID ресторана", required = true, example = "1")

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class Menu extends BaseEntity {
 
-    @Column(name = "fish")
+    @Column(name = "dish")
     private String dish;
 
     @Column(name = "price")
