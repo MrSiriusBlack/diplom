@@ -14,6 +14,6 @@ import javax.persistence.*;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "int_seq")
+    @GeneratedValue(generator = "Sequence")
     public int id;
 }

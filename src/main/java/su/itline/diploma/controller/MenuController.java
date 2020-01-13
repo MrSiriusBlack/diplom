@@ -2,12 +2,13 @@ package su.itline.diploma.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import su.itline.diploma.model.Menu;
 import su.itline.diploma.repository.MenuRepository;
 import su.itline.diploma.service.MenuService;
 import su.itline.diploma.to.MenuRequest;
-import su.itline.diploma.to.MenuResponse;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,7 +35,7 @@ public class MenuController {
 
     @ApiOperation(value = "Просмотр меню ресторанов на дату")
     @GetMapping("/{date}")
-    public List<MenuResponse> getMenu(@PathVariable LocalDate date) {
+    public List<Menu> getMenu(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return repository.findAllByDate(date);
     }
 }
