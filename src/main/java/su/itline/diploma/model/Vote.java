@@ -1,6 +1,8 @@
 package su.itline.diploma.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,7 +12,10 @@ import java.time.LocalDate;
 @Table(name = "votes")
 @Getter
 @Setter
-public class Vote extends BaseEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@SequenceGenerator(name = "Sequence", sequenceName = "vote_id_seq", allocationSize = 1)
+public class Vote extends BaseEntity{
 
     @Column(name = "vote_date")
     private LocalDate date;

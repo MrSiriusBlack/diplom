@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Getter
@@ -17,10 +14,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Entity
 @Table (name = "restaurants")
-public class Restaurant {//extends BaseEntity {
-
-    @Id
-    public Integer id;
+@SequenceGenerator(name = "Sequence", sequenceName = "restaurant_id_seq", allocationSize = 1)
+public class Restaurant extends BaseEntity {//extends BaseEntity {
 
     @Column(name = "name")
     @NotBlank

@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,6 +19,7 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
+@SequenceGenerator(name = "Sequence", sequenceName = "user_id_seq", allocationSize = 1)
 public class User extends BaseEntity {
 
     @Column(name = "name")

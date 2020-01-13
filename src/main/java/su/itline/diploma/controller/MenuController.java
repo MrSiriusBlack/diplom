@@ -2,12 +2,15 @@ package su.itline.diploma.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import su.itline.diploma.repository.MenuRepository;
 import su.itline.diploma.service.MenuService;
+import su.itline.diploma.to.MenuRequest;
+import su.itline.diploma.to.MenuResponse;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Api(tags = "Управление меню ресторанов")
 @RestController
@@ -22,11 +25,16 @@ public class MenuController {
         this.repository = repository;
     }
 
-
-
     @ApiOperation(value = "Добавление меню")
-    @PutMapping(name = "/{restaurantId}")
-    public void setMenu(@PathVariable Integer restaurantId) {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping()
+    public void setMenu(@RequestBody MenuRequest menuRequest) {
+        service.addMenu(menuRequest);
+    }
 
+    @ApiOperation(value = "Просмотр меню ресторанов на дату")
+    @GetMapping("/{date}")
+    public List<MenuResponse> getMenu(@PathVariable LocalDate date) {
+        return repository.findAllByDate(date);
     }
 }

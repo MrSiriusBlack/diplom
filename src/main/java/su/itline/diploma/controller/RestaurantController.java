@@ -37,10 +37,9 @@ public class RestaurantController {
 
     @ApiOperation(value = "Добавление или редактирование ресторана")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping()
+    @PostMapping()
     public void setRestaurant(@RequestBody RestaurantTo request) {
-        Restaurant restaurant = new Restaurant(request.getId(), request.getName());
-        repository.save(restaurant);
+        repository.save(new Restaurant(request.getName()));
     }
 
     @ApiOperation(value = "Удление ресторана")
@@ -54,7 +53,7 @@ public class RestaurantController {
     }
 
     private void checkRestaurant(int id) {
-        Optional<Restaurant> restaurantOptional = repository.findById(id);
+        var restaurantOptional = repository.findById(id);
         restaurantOptional.orElseThrow(() -> new NotFoundError(Restaurant.class, id));
     }
 }

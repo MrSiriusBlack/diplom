@@ -26,28 +26,28 @@ CREATE TABLE IF NOT EXISTS restaurants
 
 CREATE TABLE IF NOT EXISTS menus
 (
-    id              BIGINT NOT NULL PRIMARY KEY,
+    id              INTEGER NOT NULL PRIMARY KEY,
     dish            VARCHAR(255),
     price           INTEGER NOT NULL,
-    menu_date            DATE NOT NULL,
+    menu_date       DATE NOT NULL,
     restaurant_id   INTEGER NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS votes
 (
-    id              BIGINT NOT NULL PRIMARY KEY,
-    vote_date            DATE NOT NULL,
+    id              INTEGER NOT NULL PRIMARY KEY,
+    vote_date       DATE NOT NULL,
     user_id         INTEGER NOT NULL,
     restaurant_id   INTEGER NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX IF NOT EXISTS votes_unique_date_idx
-    ON VOTES (VOTE_DATE);
+CREATE UNIQUE INDEX IF NOT EXISTS votes_unique_date_user_id_idx
+    ON VOTES (VOTE_DATE, USER_ID);
 
 CREATE SEQUENCE IF NOT EXISTS int_seq;
-CREATE SEQUENCE IF NOT EXISTS void_id_seq;
+CREATE SEQUENCE IF NOT EXISTS vote_id_seq;
 CREATE SEQUENCE IF NOT EXISTS menu_id_seq;
 CREATE SEQUENCE IF NOT EXISTS user_id_seq;
 CREATE SEQUENCE IF NOT EXISTS restaurant_seq;

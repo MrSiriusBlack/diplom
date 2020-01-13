@@ -14,7 +14,6 @@ import javax.persistence.*;
 public abstract class BaseEntity {
 
     @Id
-    @SequenceGenerator(name = "int_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "int_seq")
     public int id;
 }

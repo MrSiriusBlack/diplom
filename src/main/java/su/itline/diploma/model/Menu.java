@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Table(name = "menus")
 @Getter
 @Setter
+@SequenceGenerator(name = "Sequence", sequenceName = "menu_id_seq", allocationSize = 1)
 public class Menu extends BaseEntity {
 
     @Column(name = "dish")

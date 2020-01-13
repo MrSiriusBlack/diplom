@@ -1,7 +1,5 @@
 package su.itline.diploma.to;
 
-import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.SafeHtml;
 import su.itline.diploma.HasEmail;
 
 import javax.validation.constraints.Email;
@@ -14,13 +12,11 @@ public class UserTo extends BaseTo implements HasEmail, Serializable {
 
     @NotBlank
     @Size(min = 2, max = 100)
-    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    @SafeHtml // https://stackoverflow.com/questions/17480809
     private String email;
 
     @NotBlank

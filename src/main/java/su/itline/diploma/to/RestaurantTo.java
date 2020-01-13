@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantTo extends BaseTo {
+public class RestaurantTo {
     private String name;
 }
