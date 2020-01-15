@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table (name = "restaurants")
 @SequenceGenerator(name = "Sequence", sequenceName = "restaurant_id_seq", allocationSize = 1)
-public class Restaurant extends BaseEntity {//extends BaseEntity {
+public class Restaurant extends BaseEntity {
 
     @Column(name = "name")
     @NotBlank

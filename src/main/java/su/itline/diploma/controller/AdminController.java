@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import su.itline.diploma.model.User;
 import su.itline.diploma.repository.UserRepository;
-import su.itline.diploma.to.UserTo;
 
 import java.util.List;
 

@@ -9,22 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import su.itline.diploma.errors.NotFoundError;
 import su.itline.diploma.model.Restaurant;
 import su.itline.diploma.repository.RestaurantRepository;
-import su.itline.diploma.service.RestaurantService;
 import su.itline.diploma.to.RestaurantTo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Api(tags = "Управление ресторанами")
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
 
-    private final RestaurantService service;
     private final RestaurantRepository repository;
 
-    public RestaurantController(RestaurantService service, RestaurantRepository repository) {
-        this.service = service;
+    public RestaurantController(RestaurantRepository repository) {
         this.repository = repository;
     }
 
@@ -35,7 +31,7 @@ public class RestaurantController {
         return list;
     }
 
-    @ApiOperation(value = "Добавление или редактирование ресторана")
+    @ApiOperation(value = "Добавление ресторана")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping()
     public void setRestaurant(@RequestBody RestaurantTo request) {

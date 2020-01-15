@@ -25,7 +25,7 @@ INSERT INTO menus (id, menu_date, restaurant_id) VALUES
 (5, '2020-01-13', 2),
 (6, '2020-01-13', 3);
 
-ALTER SEQUENCE menu_id_seq RESTART WITH 13;
+ALTER SEQUENCE menu_id_seq RESTART WITH 7;
 
 insert into DISHES (MENU_ID, NAME, PRICE) VALUES
 (1, 'Яичница с колбасками', 210.00),
