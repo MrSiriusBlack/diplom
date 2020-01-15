@@ -32,7 +32,7 @@ public class Menu extends BaseEntity {
     @ApiModelProperty(value = "Список блюд с ценой")
     @CollectionTable(name = "dishes", joinColumns = @JoinColumn(name = "menu_id"))
     @ElementCollection(fetch = FetchType.EAGER)
-    @MapKeyColumn(name = "name")
+    @MapKeyColumn(name = "dish")
     @Fetch(FetchMode.SUBSELECT)
     @Column(name = "price")
     private Map<String, BigDecimal> dishes;

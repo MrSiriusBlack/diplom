@@ -27,7 +27,7 @@ INSERT INTO menus (id, menu_date, restaurant_id) VALUES
 
 ALTER SEQUENCE menu_id_seq RESTART WITH 7;
 
-insert into DISHES (MENU_ID, NAME, PRICE) VALUES
+insert into DISHES (MENU_ID, DISH, PRICE) VALUES
 (1, 'Яичница с колбасками', 210.00),
 (1, 'Свекла с сыром', 190.00),
 (2, 'Ростбиф', 350.00),

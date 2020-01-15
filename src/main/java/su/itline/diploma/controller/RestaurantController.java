@@ -27,8 +27,7 @@ public class RestaurantController {
     @ApiOperation(value = "Получение всех ресторанов")
     @GetMapping()
     public List<Restaurant> getRestaurant() {
-        List<Restaurant> list = repository.findAll();
-        return list;
+        return repository.findAll();
     }
 
     @ApiOperation(value = "Добавление ресторана")
